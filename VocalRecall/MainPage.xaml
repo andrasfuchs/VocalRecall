@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="VocalRecall.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="391" d:DesignWidth="800" Name="usrMainPage" Unloaded="usrMainPage_Unloaded" MinHeight="450" MinWidth="800" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" KeyDown="usrMainPage_KeyDown">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="300*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="200*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="150*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" Name="rctPicture" Stroke="Black" StrokeThickness="1" VerticalAlignment="Stretch">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB7B7B7" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button Content="Get 10 words" Margin="20" Name="btnLoad10Words" Click="btnLoad10Words_Click" Grid.Column="4" />
+        <Image Grid.Column="2" Grid.Row="1" Name="imgCenter" Stretch="Uniform" Margin="10" MouseLeftButtonDown="imgCenter_MouseLeftButtonDown" />
+        <sdk:Label Grid.Row="1" Margin="10,80" Name="lblWordLeft" Content="Foreign Word" FontSize="18" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" />
+        <sdk:Label Grid.Column="4" Grid.Row="1" Margin="10,80" Name="lblWordRight" FontSize="18" HorizontalContentAlignment="Center" Content="Native Word" BorderThickness="1" BorderBrush="Black" />
+        <Slider Grid.Row="3" Height="64" HorizontalAlignment="Stretch" Margin="12,0" Name="sldrWords" VerticalAlignment="Top" Width="776" Grid.ColumnSpan="5" Maximum="100" ValueChanged="sldrWords_ValueChanged" IsEnabled="False" SmallChange="1" LargeChange="5" />
+        <Button Content="Play (1)" Grid.Row="2" Margin="60,20" Name="btnPlayLeft" IsEnabled="False" Click="btnPlayLeft_Click" />
+        <Button Content="Play (2)" Grid.Column="4" Grid.Row="2" Margin="60,20" Name="btnPlayRight" IsEnabled="False" Click="btnPlayRight_Click" />
+        <MediaElement Grid.Column="0" Grid.Row="0" Margin="100,20" Name="mediaElement" />
+        <Slider Grid.Column="2" Grid.Row="2" Margin="20,30,20,10" Name="sldrDifficulty" ValueChanged="sldrDifficulty_ValueChanged" Minimum="10" Maximum="15000" LargeChange="50" SmallChange="10" Value="380" />
+        <sdk:Label Grid.Column="2" Grid.Row="2" Margin="20,5,20,35" Name="lblDifficulty" HorizontalContentAlignment="Center" Content="0 - 10" />
+        <Button Content="Mass download" Margin="20" Name="btnPlaySession" Grid.Column="4" Grid.Row="4" Click="btnPlaySession_Click" />
+        <Button Content="Next &gt;&gt; (Space)" Margin="70,20" Name="btnSkip" Grid.Column="2" Grid.Row="4" Click="btnSkip_Click" />
+    </Grid>
+</UserControl>

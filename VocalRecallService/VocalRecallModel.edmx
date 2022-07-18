@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SuggestopediaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SuggestopediaModelStoreContainer">
+          <EntitySet Name="BugReport" EntityType="SuggestopediaModel.Store.BugReport" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Culture" EntityType="SuggestopediaModel.Store.Culture" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlayLog" EntityType="SuggestopediaModel.Store.PlayLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SessionLog" EntityType="SuggestopediaModel.Store.SessionLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TestResult" EntityType="SuggestopediaModel.Store.TestResult" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Translation" EntityType="SuggestopediaModel.Store.Translation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="SuggestopediaModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Word" EntityType="SuggestopediaModel.Store.Word" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BugReport_Translation" Association="SuggestopediaModel.Store.FK_BugReport_Translation">
+            <End Role="Translation" EntitySet="Translation" />
+            <End Role="BugReport" EntitySet="BugReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BugReport_Word" Association="SuggestopediaModel.Store.FK_BugReport_Word">
+            <End Role="Word" EntitySet="Word" />
+            <End Role="BugReport" EntitySet="BugReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_PlayLog" Association="SuggestopediaModel.Store.FK_PlayLog_PlayLog">
+            <End Role="PlayLog" EntitySet="PlayLog" />
+            <End Role="PlayLog1" EntitySet="PlayLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_User" Association="SuggestopediaModel.Store.FK_PlayLog_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PlayLog" EntitySet="PlayLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_WordFirst" Association="SuggestopediaModel.Store.FK_PlayLog_WordFirst">
+            <End Role="Word" EntitySet="Word" />
+            <End Role="PlayLog" EntitySet="PlayLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_WordSecond" Association="SuggestopediaModel.Store.FK_PlayLog_WordSecond">
+            <End Role="Word" EntitySet="Word" />
+            <End Role="PlayLog" EntitySet="PlayLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionLog_User" Association="SuggestopediaModel.Store.FK_SessionLog_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SessionLog" EntitySet="SessionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_User" Association="SuggestopediaModel.Store.FK_TestResult_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_Word" Association="SuggestopediaModel.Store.FK_TestResult_Word">
+            <End Role="Word" EntitySet="Word" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translation_OriginalWord" Association="SuggestopediaModel.Store.FK_Translation_OriginalWord">
+            <End Role="Word" EntitySet="Word" />
+            <End Role="Translation" EntitySet="Translation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Culture" Association="SuggestopediaModel.Store.FK_User_Culture">
+            <End Role="Culture" EntitySet="Culture" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BugReport">
+          <Key>
+            <PropertyRef Name="BugReportId" />
+          </Key>
+          <Property Name="BugReportId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Votes" Type="int" Nullable="false" />
+          <Property Name="RelatedWordId" Type="int" />
+          <Property Name="RelatedTransactionId" Type="int" />
+        </EntityType>
+        <EntityType Name="Culture">
+          <Key>
+            <PropertyRef Name="CultureId" />
+          </Key>
+          <Property Name="CultureId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CultureISO" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="TotalBooksRead" Type="int" Nullable="false" />
+          <Property Name="TotalWordsProcessed" Type="int" Nullable="false" />
+          <Property Name="TotalWordCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlayLog">
+          <Key>
+            <PropertyRef Name="PlayLogId" />
+          </Key>
+          <Property Name="PlayLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FirstWordId" Type="int" Nullable="false" />
+          <Property Name="SecondWordId" Type="int" Nullable="false" />
+          <Property Name="Repetition" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="NextPlayLogId" Type="int" />
+        </EntityType>
+        <EntityType Name="SessionLog">
+          <Key>
+            <PropertyRef Name="SessionLogId" />
+          </Key>
+          <Property Name="SessionLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SessionSettings" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SessionStarted" Type="datetime" Nullable="false" />
+          <Property Name="SessionEnded" Type="datetime" />
+          <Property Name="Result" Type="float" />
+        </EntityType>
+        <EntityType Name="TestResult">
+          <Key>
+            <PropertyRef Name="TestResultId" />
+          </Key>
+          <Property Name="TestResultId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="OriginalWordId" Type="int" Nullable="false" />
+          <Property Name="WasCorrect" Type="bit" Nullable="false" />
+          <Property Name="Tested" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="TranslationId" />
+          </Key>
+          <Property Name="TranslationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OriginalWordId" Type="int" Nullable="false" />
+          <Property Name="RootWord" Type="nvarchar" MaxLength="100" />
+          <Property Name="PartsOfSpeech" Type="nvarchar" MaxLength="50" />
+          <Property Name="CultureId" Type="int" Nullable="false" />
+          <Property Name="Common" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Uncommon" Type="nvarchar(max)" />
+          <Property Name="Rare" Type="nvarchar(max)" />
+          <Property Name="RawResponse" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PasswordHash" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Registered" Type="datetime" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" Nullable="false" />
+          <Property Name="CultureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="WordId" />
+          </Key>
+          <Property Name="WordId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CultureId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Frequency" Type="int" />
+          <Property Name="Pronunciation" Type="varbinary(max)" />
+          <Property Name="Picture" Type="varbinary(max)" />
+          <Property Name="AlternativePictureUrls" Type="nvarchar(max)" />
+          <Property Name="SelectedPictureUrl" Type="nvarchar(max)" />
+          <Property Name="FrequencyLastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BugReport_Translation">
+          <End Role="Translation" Type="SuggestopediaModel.Store.Translation" Multiplicity="0..1" />
+          <End Role="BugReport" Type="SuggestopediaModel.Store.BugReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="TranslationId" />
+            </Principal>
+            <Dependent Role="BugReport">
+              <PropertyRef Name="RelatedTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BugReport_Word">
+          <End Role="Word" Type="SuggestopediaModel.Store.Word" Multiplicity="0..1" />
+          <End Role="BugReport" Type="SuggestopediaModel.Store.BugReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="BugReport">
+              <PropertyRef Name="RelatedWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_PlayLog">
+          <End Role="PlayLog" Type="SuggestopediaModel.Store.PlayLog" Multiplicity="0..1" />
+          <End Role="PlayLog1" Type="SuggestopediaModel.Store.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayLog">
+              <PropertyRef Name="PlayLogId" />
+            </Principal>
+            <Dependent Role="PlayLog1">
+              <PropertyRef Name="NextPlayLogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_User">
+          <End Role="User" Type="SuggestopediaModel.Store.User" Multiplicity="1" />
+          <End Role="PlayLog" Type="SuggestopediaModel.Store.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PlayLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_WordFirst">
+          <End Role="Word" Type="SuggestopediaModel.Store.Word" Multiplicity="1" />
+          <End Role="PlayLog" Type="SuggestopediaModel.Store.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="PlayLog">
+              <PropertyRef Name="FirstWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_WordSecond">
+          <End Role="Word" Type="SuggestopediaModel.Store.Word" Multiplicity="1" />
+          <End Role="PlayLog" Type="SuggestopediaModel.Store.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="PlayLog">
+              <PropertyRef Name="SecondWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionLog_User">
+          <End Role="User" Type="SuggestopediaModel.Store.User" Multiplicity="1" />
+          <End Role="SessionLog" Type="SuggestopediaModel.Store.SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_User">
+          <End Role="User" Type="SuggestopediaModel.Store.User" Multiplicity="1" />
+          <End Role="TestResult" Type="SuggestopediaModel.Store.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_Word">
+          <End Role="Word" Type="SuggestopediaModel.Store.Word" Multiplicity="1" />
+          <End Role="TestResult" Type="SuggestopediaModel.Store.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="OriginalWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translation_OriginalWord">
+          <End Role="Word" Type="SuggestopediaModel.Store.Word" Multiplicity="1" />
+          <End Role="Translation" Type="SuggestopediaModel.Store.Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="OriginalWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Culture">
+          <End Role="Culture" Type="SuggestopediaModel.Store.Culture" Multiplicity="1" />
+          <End Role="User" Type="SuggestopediaModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Culture">
+              <PropertyRef Name="CultureId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CultureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_GetTopWords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cultureId" Type="int" Mode="In" />
+          <Parameter Name="topCount" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetWord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cultureId" Type="int" Mode="In" />
+          <Parameter Name="text" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertWord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cultureId" Type="int" Mode="In" />
+          <Parameter Name="text" Type="nvarchar" Mode="In" />
+          <Parameter Name="frequency" Type="int" Mode="In" />
+          <Parameter Name="frequencyLastUpdated" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_ResetFrequencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cultureId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdateWord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wordId" Type="int" Mode="In" />
+          <Parameter Name="text" Type="nvarchar" Mode="In" />
+          <Parameter Name="frequency" Type="int" Mode="In" />
+          <Parameter Name="frequencyLastUpdated" Type="datetime" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VocalRecallModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="VocalRecallEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BugReports" EntityType="VocalRecallModel.BugReport" />
+          <EntitySet Name="Cultures" EntityType="VocalRecallModel.Culture" />
+          <EntitySet Name="PlayLogs" EntityType="VocalRecallModel.PlayLog" />
+          <EntitySet Name="TestResults" EntityType="VocalRecallModel.TestResult" />
+          <EntitySet Name="Translations" EntityType="VocalRecallModel.Translation" />
+          <EntitySet Name="Users" EntityType="VocalRecallModel.User" />
+          <EntitySet Name="Words" EntityType="VocalRecallModel.Word" />
+          <AssociationSet Name="FK_BugReport_Translation" Association="VocalRecallModel.FK_BugReport_Translation">
+            <End Role="Translation" EntitySet="Translations" />
+            <End Role="BugReport" EntitySet="BugReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BugReport_Word" Association="VocalRecallModel.FK_BugReport_Word">
+            <End Role="Word" EntitySet="Words" />
+            <End Role="BugReport" EntitySet="BugReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Culture" Association="VocalRecallModel.FK_User_Culture">
+            <End Role="Culture" EntitySet="Cultures" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Culture" Association="VocalRecallModel.FK_Word_Culture">
+            <End Role="Culture" EntitySet="Cultures" />
+            <End Role="Word" EntitySet="Words" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_PlayLog" Association="VocalRecallModel.FK_PlayLog_PlayLog">
+            <End Role="PlayLog" EntitySet="PlayLogs" />
+            <End Role="PlayLog1" EntitySet="PlayLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_User" Association="VocalRecallModel.FK_PlayLog_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PlayLog" EntitySet="PlayLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_Word" Association="VocalRecallModel.FK_PlayLog_Word">
+            <End Role="Word" EntitySet="Words" />
+            <End Role="PlayLog" EntitySet="PlayLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayLog_Word1" Association="VocalRecallModel.FK_PlayLog_Word1">
+            <End Role="Word" EntitySet="Words" />
+            <End Role="PlayLog" EntitySet="PlayLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_User" Association="VocalRecallModel.FK_TestResult_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TestResult" EntitySet="TestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_Word" Association="VocalRecallModel.FK_TestResult_Word">
+            <End Role="Word" EntitySet="Words" />
+            <End Role="TestResult" EntitySet="TestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translation_OriginalWord" Association="VocalRecallModel.FK_Translation_OriginalWord">
+            <End Role="Word" EntitySet="Words" />
+            <End Role="Translation" EntitySet="Translations" />
+          </AssociationSet>
+          <EntitySet Name="SessionLogs" EntityType="VocalRecallModel.SessionLog" />
+          <AssociationSet Name="FK_SessionLog_User" Association="VocalRecallModel.FK_SessionLog_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SessionLog" EntitySet="SessionLogs" />
+          </AssociationSet>
+          <FunctionImport Name="sp_GetTopWords" ReturnType="Collection(VocalRecallModel.sp_GetTopWords_Result)">
+            <Parameter Name="cultureId" Mode="In" Type="Int32" />
+            <Parameter Name="topCount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ResetFrequencies">
+          <Parameter Name="cultureId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetWord" ReturnType="Collection(VocalRecallModel.sp_GetWord_Result)">
+            <Parameter Name="cultureId" Mode="In" Type="Int32" />
+            <Parameter Name="text" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertWord">
+            <Parameter Name="cultureId" Mode="In" Type="Int32" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="frequency" Mode="In" Type="Int32" />
+            <Parameter Name="frequencyLastUpdated" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateWord">
+            <Parameter Name="wordId" Mode="In" Type="Int32" />
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="frequency" Mode="In" Type="Int32" />
+            <Parameter Name="frequencyLastUpdated" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="BugReport">
+          <Key>
+            <PropertyRef Name="BugReportId" />
+          </Key>
+          <Property Name="BugReportId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Votes" Type="Int32" Nullable="false" />
+          <Property Name="RelatedWordId" Type="Int32" />
+          <Property Name="RelatedTransactionId" Type="Int32" />
+          <NavigationProperty Name="Translation" Relationship="VocalRecallModel.FK_BugReport_Translation" FromRole="BugReport" ToRole="Translation" />
+          <NavigationProperty Name="Word" Relationship="VocalRecallModel.FK_BugReport_Word" FromRole="BugReport" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="Culture">
+          <Key>
+            <PropertyRef Name="CultureId" />
+          </Key>
+          <Property Name="CultureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CultureISO" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="TotalWordsProcessed" Type="Int32" Nullable="false" />
+          <Property Name="TotalWordCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="VocalRecallModel.FK_User_Culture" FromRole="Culture" ToRole="User" />
+          <NavigationProperty Name="Words" Relationship="VocalRecallModel.FK_Word_Culture" FromRole="Culture" ToRole="Word" />
+          <Property Type="Int32" Name="TotalBooksRead" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlayLog">
+          <Key>
+            <PropertyRef Name="PlayLogId" />
+          </Key>
+          <Property Name="PlayLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FirstWordId" Type="Int32" Nullable="false" />
+          <Property Name="SecondWordId" Type="Int32" Nullable="false" />
+          <Property Name="Repetition" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NextPlayLogId" Type="Int32" />
+          <NavigationProperty Name="PreviousPlayLog" Relationship="VocalRecallModel.FK_PlayLog_PlayLog" FromRole="PlayLog" ToRole="PlayLog1" />
+          <NavigationProperty Name="NextPlayLog" Relationship="VocalRecallModel.FK_PlayLog_PlayLog" FromRole="PlayLog1" ToRole="PlayLog" />
+          <NavigationProperty Name="User" Relationship="VocalRecallModel.FK_PlayLog_User" FromRole="PlayLog" ToRole="User" />
+          <NavigationProperty Name="SecondWord" Relationship="VocalRecallModel.FK_PlayLog_Word1" FromRole="PlayLog" ToRole="Word" />
+          <NavigationProperty Name="FirstWord" Relationship="VocalRecallModel.FK_PlayLog_Word" FromRole="PlayLog" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="TestResult">
+          <Key>
+            <PropertyRef Name="TestResultId" />
+          </Key>
+          <Property Name="TestResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="OriginalWordId" Type="Int32" Nullable="false" />
+          <Property Name="WasCorrect" Type="Boolean" Nullable="false" />
+          <Property Name="Tested" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="VocalRecallModel.FK_TestResult_User" FromRole="TestResult" ToRole="User" />
+          <NavigationProperty Name="Word" Relationship="VocalRecallModel.FK_TestResult_Word" FromRole="TestResult" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="TranslationId" />
+          </Key>
+          <Property Name="TranslationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OriginalWordId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BugReports" Relationship="VocalRecallModel.FK_BugReport_Translation" FromRole="Translation" ToRole="BugReport" />
+          <NavigationProperty Name="OriginalWord" Relationship="VocalRecallModel.FK_Translation_OriginalWord" FromRole="Translation" ToRole="Word" />
+          <Property Type="String" Name="RawResponse" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RootWord" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PartsOfSpeech" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CultureId" Nullable="false" />
+          <Property Type="String" Name="Common" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="Uncommon" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Rare" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastUpdated" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Registered" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CultureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Culture" Relationship="VocalRecallModel.FK_User_Culture" FromRole="User" ToRole="Culture" />
+          <NavigationProperty Name="PlayLogs" Relationship="VocalRecallModel.FK_PlayLog_User" FromRole="User" ToRole="PlayLog" />
+          <NavigationProperty Name="TestResults" Relationship="VocalRecallModel.FK_TestResult_User" FromRole="User" ToRole="TestResult" />
+          <NavigationProperty Name="SessionLogs" Relationship="VocalRecallModel.FK_SessionLog_User" FromRole="User" ToRole="SessionLog" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="WordId" />
+          </Key>
+          <Property Name="WordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CultureId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Frequency" Type="Int32" />
+          <Property Name="Pronunciation" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="BugReports" Relationship="VocalRecallModel.FK_BugReport_Word" FromRole="Word" ToRole="BugReport" />
+          <NavigationProperty Name="Culture" Relationship="VocalRecallModel.FK_Word_Culture" FromRole="Word" ToRole="Culture" />
+          <NavigationProperty Name="PlayLogsAsFirst" Relationship="VocalRecallModel.FK_PlayLog_Word" FromRole="Word" ToRole="PlayLog" />
+          <NavigationProperty Name="PlayLogsAsSecond" Relationship="VocalRecallModel.FK_PlayLog_Word1" FromRole="Word" ToRole="PlayLog" />
+          <NavigationProperty Name="TestResults" Relationship="VocalRecallModel.FK_TestResult_Word" FromRole="Word" ToRole="TestResult" />
+          <NavigationProperty Name="Translations" Relationship="VocalRecallModel.FK_Translation_OriginalWord" FromRole="Word" ToRole="Translation" />
+          <Property Type="String" Name="AlternativePictureUrls" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SelectedPictureUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="FrequencyLastUpdated" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_BugReport_Translation">
+          <End Role="Translation" Type="VocalRecallModel.Translation" Multiplicity="0..1" />
+          <End Role="BugReport" Type="VocalRecallModel.BugReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="TranslationId" />
+            </Principal>
+            <Dependent Role="BugReport">
+              <PropertyRef Name="RelatedTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BugReport_Word">
+          <End Role="Word" Type="VocalRecallModel.Word" Multiplicity="0..1" />
+          <End Role="BugReport" Type="VocalRecallModel.BugReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="BugReport">
+              <PropertyRef Name="RelatedWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Culture">
+          <End Role="Culture" Type="VocalRecallModel.Culture" Multiplicity="1" />
+          <End Role="User" Type="VocalRecallModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Culture">
+              <PropertyRef Name="CultureId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CultureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Culture">
+          <End Role="Culture" Type="VocalRecallModel.Culture" Multiplicity="1" />
+          <End Role="Word" Type="VocalRecallModel.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Culture">
+              <PropertyRef Name="CultureId" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="CultureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_PlayLog">
+          <End Role="PlayLog" Type="VocalRecallModel.PlayLog" Multiplicity="0..1" />
+          <End Role="PlayLog1" Type="VocalRecallModel.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayLog">
+              <PropertyRef Name="PlayLogId" />
+            </Principal>
+            <Dependent Role="PlayLog1">
+              <PropertyRef Name="NextPlayLogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_User">
+          <End Role="User" Type="VocalRecallModel.User" Multiplicity="1" />
+          <End Role="PlayLog" Type="VocalRecallModel.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PlayLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_Word">
+          <End Role="Word" Type="VocalRecallModel.Word" Multiplicity="1" />
+          <End Role="PlayLog" Type="VocalRecallModel.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="PlayLog">
+              <PropertyRef Name="FirstWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayLog_Word1">
+          <End Role="Word" Type="VocalRecallModel.Word" Multiplicity="1" />
+          <End Role="PlayLog" Type="VocalRecallModel.PlayLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="PlayLog">
+              <PropertyRef Name="SecondWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_User">
+          <End Role="User" Type="VocalRecallModel.User" Multiplicity="1" />
+          <End Role="TestResult" Type="VocalRecallModel.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_Word">
+          <End Role="Word" Type="VocalRecallModel.Word" Multiplicity="1" />
+          <End Role="TestResult" Type="VocalRecallModel.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="OriginalWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translation_OriginalWord">
+          <End Role="Word" Type="VocalRecallModel.Word" Multiplicity="1" />
+          <End Role="Translation" Type="VocalRecallModel.Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Word">
+              <PropertyRef Name="WordId" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="OriginalWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SessionLog">
+          <Key>
+            <PropertyRef Name="SessionLogId" />
+          </Key>
+          <Property Type="Int32" Name="SessionLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="SessionSettings" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SessionStarted" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="SessionEnded" Precision="3" />
+          <Property Type="Double" Name="Result" />
+          <NavigationProperty Name="User" Relationship="VocalRecallModel.FK_SessionLog_User" FromRole="SessionLog" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_SessionLog_User">
+          <End Type="VocalRecallModel.User" Role="User" Multiplicity="1" />
+          <End Type="VocalRecallModel.SessionLog" Role="SessionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SessionLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_GetTopWords_Result">
+          <Property Type="Int64" Name="Index" Nullable="true" />
+          <Property Type="Int32" Name="WordId" Nullable="false" />
+          <Property Type="Int32" Name="CultureId" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Frequency" Nullable="true" />
+          <Property Type="DateTime" Name="FrequencyLastUpdated" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_GetWord_Result">
+          <Property Type="Int32" Name="WordId" Nullable="false" />
+          <Property Type="Int32" Name="CultureId" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Frequency" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SuggestopediaModelStoreContainer" CdmEntityContainer="VocalRecallEntities">
+          <EntitySetMapping Name="BugReports"><EntityTypeMapping TypeName="VocalRecallModel.BugReport"><MappingFragment StoreEntitySet="BugReport">
+            <ScalarProperty Name="BugReportId" ColumnName="BugReportId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Votes" ColumnName="Votes" />
+            <ScalarProperty Name="RelatedWordId" ColumnName="RelatedWordId" />
+            <ScalarProperty Name="RelatedTransactionId" ColumnName="RelatedTransactionId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Cultures"><EntityTypeMapping TypeName="VocalRecallModel.Culture"><MappingFragment StoreEntitySet="Culture">
+            <ScalarProperty Name="TotalBooksRead" ColumnName="TotalBooksRead" />
+                <ScalarProperty Name="CultureId" ColumnName="CultureId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="CultureISO" ColumnName="CultureISO" />
+            <ScalarProperty Name="TotalWordsProcessed" ColumnName="TotalWordsProcessed" />
+            <ScalarProperty Name="TotalWordCount" ColumnName="TotalWordCount" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PlayLogs"><EntityTypeMapping TypeName="VocalRecallModel.PlayLog"><MappingFragment StoreEntitySet="PlayLog">
+            <ScalarProperty Name="PlayLogId" ColumnName="PlayLogId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="FirstWordId" ColumnName="FirstWordId" />
+            <ScalarProperty Name="SecondWordId" ColumnName="SecondWordId" />
+            <ScalarProperty Name="Repetition" ColumnName="Repetition" />
+            <ScalarProperty Name="Time" ColumnName="Time" />
+            <ScalarProperty Name="NextPlayLogId" ColumnName="NextPlayLogId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TestResults"><EntityTypeMapping TypeName="VocalRecallModel.TestResult"><MappingFragment StoreEntitySet="TestResult">
+            <ScalarProperty Name="TestResultId" ColumnName="TestResultId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="OriginalWordId" ColumnName="OriginalWordId" />
+            <ScalarProperty Name="WasCorrect" ColumnName="WasCorrect" />
+            <ScalarProperty Name="Tested" ColumnName="Tested" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Translations"><EntityTypeMapping TypeName="VocalRecallModel.Translation"><MappingFragment StoreEntitySet="Translation">
+            <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Rare" ColumnName="Rare" />
+                <ScalarProperty Name="Uncommon" ColumnName="Uncommon" />
+                <ScalarProperty Name="Common" ColumnName="Common" />
+                <ScalarProperty Name="CultureId" ColumnName="CultureId" />
+                <ScalarProperty Name="PartsOfSpeech" ColumnName="PartsOfSpeech" />
+                <ScalarProperty Name="RootWord" ColumnName="RootWord" />
+                <ScalarProperty Name="RawResponse" ColumnName="RawResponse" />
+                <ScalarProperty Name="TranslationId" ColumnName="TranslationId" />
+            <ScalarProperty Name="OriginalWordId" ColumnName="OriginalWordId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="VocalRecallModel.User"><MappingFragment StoreEntitySet="User">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Username" ColumnName="Username" />
+            <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+            <ScalarProperty Name="Registered" ColumnName="Registered" />
+            <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+            <ScalarProperty Name="CultureId" ColumnName="CultureId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Words"><EntityTypeMapping TypeName="VocalRecallModel.Word"><MappingFragment StoreEntitySet="Word">
+            <ScalarProperty Name="FrequencyLastUpdated" ColumnName="FrequencyLastUpdated" />
+                <ScalarProperty Name="SelectedPictureUrl" ColumnName="SelectedPictureUrl" />
+                <ScalarProperty Name="AlternativePictureUrls" ColumnName="AlternativePictureUrls" />
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+            <ScalarProperty Name="CultureId" ColumnName="CultureId" />
+            <ScalarProperty Name="Text" ColumnName="Text" />
+            <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+            <ScalarProperty Name="Pronunciation" ColumnName="Pronunciation" />
+            <ScalarProperty Name="Picture" ColumnName="Picture" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SessionLogs">
+            <EntityTypeMapping TypeName="VocalRecallModel.SessionLog">
+              <MappingFragment StoreEntitySet="SessionLog">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="SessionEnded" ColumnName="SessionEnded" />
+                <ScalarProperty Name="SessionStarted" ColumnName="SessionStarted" />
+                <ScalarProperty Name="SessionSettings" ColumnName="SessionSettings" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SessionLogId" ColumnName="SessionLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetTopWords" FunctionName="SuggestopediaModel.Store.sp_GetTopWords">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VocalRecallModel.sp_GetTopWords_Result">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="CultureId" ColumnName="CultureId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="FrequencyLastUpdated" ColumnName="FrequencyLastUpdated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ResetFrequencies" FunctionName="SuggestopediaModel.Store.sp_ResetFrequencies" />
+          <FunctionImportMapping FunctionImportName="sp_GetWord" FunctionName="SuggestopediaModel.Store.sp_GetWord">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VocalRecallModel.sp_GetWord_Result">
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="CultureId" ColumnName="CultureId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsertWord" FunctionName="SuggestopediaModel.Store.sp_InsertWord" />
+          <FunctionImportMapping FunctionImportName="sp_UpdateWord" FunctionName="SuggestopediaModel.Store.sp_UpdateWord" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SuggestopediaModel">
+        <EntityTypeShape EntityType="VocalRecallModel.BugReport" Width="1.875" PointX="7.5" PointY="10.5" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="VocalRecallModel.Culture" Width="2" PointX="0.5" PointY="6.5" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="VocalRecallModel.PlayLog" Width="1.5" PointX="6.5" PointY="6" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VocalRecallModel.TestResult" Width="1.5" PointX="8.25" PointY="6.5" Height="2.3648893229166648" IsExpanded="true" />
+        <EntityTypeShape EntityType="VocalRecallModel.Translation" Width="2" PointX="3.375" PointY="11.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VocalRecallModel.User" Width="1.5" PointX="3" PointY="4.125" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="VocalRecallModel.Word" Width="2.125" PointX="3" PointY="7.25" Height="3.3263964843749996" IsExpanded="true" />
+        <AssociationConnector Association="VocalRecallModel.FK_BugReport_Translation" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="12.182444661458334" />
+          <ConnectorPoint PointX="7.5" PointY="12.182444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_BugReport_Word" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.821848958333334" />
+          <ConnectorPoint PointX="7.5" PointY="10.821848958333334" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_User_Culture" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.7833968098958337" />
+          <ConnectorPoint PointX="3" PointY="6.7833968098958337" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_Word_Culture" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.2449446614583337" />
+          <ConnectorPoint PointX="3" PointY="8.2449446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_PlayLog_PlayLog" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.7819230769230767" PointY="9.326396484375" />
+          <ConnectorPoint PointX="5.7819230769230767" PointY="9.576396484375" />
+          <ConnectorPoint PointX="6.2284615384615378" PointY="9.576396484375" />
+          <ConnectorPoint PointX="6.2284615384615378" PointY="9.326396484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_PlayLog_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.5333968098958337" />
+          <ConnectorPoint PointX="5.25" PointY="6.5333968098958337" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_PlayLog_Word" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.7948421672979986" />
+          <ConnectorPoint PointX="5.25" PointY="8.7948421672979986" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_PlayLog_Word1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.147421083649" />
+          <ConnectorPoint PointX="5.25" PointY="8.147421083649" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_TestResult_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.3699446614583337" />
+          <ConnectorPoint PointX="9" PointY="5.3699446614583337" />
+          <ConnectorPoint PointX="9" PointY="6.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_TestResult_Word" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.0069482421875" />
+          <ConnectorPoint PointX="9.40625" PointY="10.0069482421875" />
+          <ConnectorPoint PointX="9.40625" PointY="8.8648893229166639" />
+        </AssociationConnector>
+        <AssociationConnector Association="VocalRecallModel.FK_Translation_OriginalWord" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.5126352685546878" PointY="11.143697916666666" />
+          <ConnectorPoint PointX="3.5126352685546878" PointY="13.081228239275616" />
+          <ConnectorPoint PointX="5.25" PointY="13.081228239275616" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="VocalRecallModel.SessionLog" Width="1.5" PointX="5.25" PointY="2.375" Height="2.3648893229166674" />
+        <AssociationConnector Association="VocalRecallModel.FK_SessionLog_User" >
+          <ConnectorPoint PointX="4.5" PointY="4.4324446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="4.4324446614583337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

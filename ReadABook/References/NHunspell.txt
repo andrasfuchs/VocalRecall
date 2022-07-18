@@ -1,0 +1,2 @@
+NHunspell v0.9.6.0
+http://nhunspell.sourceforge.net/ 

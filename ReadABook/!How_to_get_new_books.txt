@@ -1,0 +1,15 @@
+1, get them from torrent
+2, acceptable formats are EPUB, TXT, MOBI, PDF, RTF (not DOC)
+3, copy all of them into one directory, but do not mix languages
+4, download and install Calibre
+5, load up all the books into its library
+6, set their metadata to indicate their language
+7, bulk convert them into utf-8 txt
+8, export them into a folder as txt
+9, copy all txt files into the root of that folder (and delete subfolders)
+10, rename them by replacing space with _
+11, copy them into the ReadABook's directory
+
+
+German torrent:
+http://kickass.to/42-000-deutsche-epub-ebooks-42-740-ebooks-komplettes-boox-to-ar-chiv-bis-nov-2013-t8128638.html#main

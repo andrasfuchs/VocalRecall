@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SuggestopediaService.DataContract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SuggestopediaService.DataContract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/SuggestopediaService/SuggestopediaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfWord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Word" nillable="true" type="tns:Word" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWord" nillable="true" type="tns:ArrayOfWord" />
+  <xs:complexType name="Word">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AsyncWordResult" type="tns:AsyncWordResult" />
+      <xs:element minOccurs="0" name="CultureId" type="xs:int" />
+      <xs:element minOccurs="0" name="Frequency" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Pronunciation" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WordId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Word" nillable="true" type="tns:Word" />
+  <xs:simpleType name="AsyncWordResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AllOk" />
+      <xs:enumeration value="DownloadingPronunciation" />
+      <xs:enumeration value="DownloadingPicture" />
+      <xs:enumeration value="DownloadingTranslation">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MissingEntry">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Error">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AsyncWordResult" nillable="true" type="tns:AsyncWordResult" />
+  <xs:complexType name="ArrayOfCulture">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Culture" nillable="true" type="tns:Culture" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCulture" nillable="true" type="tns:ArrayOfCulture" />
+  <xs:complexType name="Culture">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CultureId" type="xs:int" />
+      <xs:element minOccurs="0" name="CultureIso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Culture" nillable="true" type="tns:Culture" />
+  <xs:complexType name="UserInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CultureId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrentLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="SessionId" type="xs:int" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserInfo" nillable="true" type="tns:UserInfo" />
+</xs:schema>

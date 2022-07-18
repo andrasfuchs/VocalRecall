@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ISuggestopediaService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost/SuggestopediaService/SuggestopediaService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISuggestopediaService"
+                contract="SuggestopediaService.ISuggestopediaService" name="BasicHttpBinding_ISuggestopediaService" />
+        </client>
+    </system.serviceModel>
+</configuration>

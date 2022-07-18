@@ -1,0 +1,9 @@
+MP3
+http://translate.google.com/translate_tts?ie=UTF-8&q=ordenador&tl=es
+
+JSON
+http://translate.google.com/translate_a/t?client=t&text=papel&hl=en&sl=es&tl=hu&multires=1&otf=1&ssel=0&tsel=0&sc=1
+
+JPG
+http://www.google.com/search?q=vir%C3%A1g&tbm=isch&tbs=itp:photo,isz:m
+... imgurl=http://pctrs.network.hu/picture/6/7/6/_/tojas_kremmel_toltott_fasirozott_676354_19026.jpg ...

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4d9fc055-736b-4f6a-a1ab-08f0421f3f1f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/VocalRecallService/VocalRecallService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VocalRecallService.wsdl" MetadataType="Wsdl" ID="b78509bf-5bfa-456c-918a-38dbdfc51467" SourceId="1" SourceUrl="http://localhost/VocalRecallService/VocalRecallService.svc?wsdl" />
+    <MetadataFile FileName="VocalRecallService.disco" MetadataType="Disco" ID="2cb81d57-676f-4529-8d9b-93935f26d425" SourceId="1" SourceUrl="http://localhost/VocalRecallService/VocalRecallService.svc?disco" />
+    <MetadataFile FileName="VocalRecallService.xsd" MetadataType="Schema" ID="1dda6337-3b93-4ada-9386-39bb3c1a8f64" SourceId="1" SourceUrl="http://localhost/VocalRecallService/VocalRecallService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VocalRecallService1.xsd" MetadataType="Schema" ID="45e0ba39-7ad7-44a2-8836-62d1b31aaf22" SourceId="1" SourceUrl="http://localhost/VocalRecallService/VocalRecallService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VocalRecallService2.xsd" MetadataType="Schema" ID="9415816f-8942-4a49-b0be-4b954d8cb0f7" SourceId="1" SourceUrl="http://localhost/VocalRecallService/VocalRecallService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VocalRecallService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/VocalRecallService/VocalRecallService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/VocalRecallService/VocalRecallService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/VocalRecallService/VocalRecallService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VocalRecallService.DataContract" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVocalRecallService_DeleteWords_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWords" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_DeleteWords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_UploadWords_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadWords" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_UploadWords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadWordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_ListCultures_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListCultures" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_ListCultures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListCulturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_AuthenticateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_AuthenticateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetUserInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetUserInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetWord_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWord" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetWord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetTranslations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslations" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetTranslations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetWords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWords" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetWords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_Get10Words_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get10Words" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_Get10Words_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Get10WordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_DeletePicture_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePicture" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_DeletePicture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_ResetWordFrequencies_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetWordFrequencies" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_ResetWordFrequencies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetWordFrequenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_UpdateCultureStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCultureStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_UpdateCultureStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCultureStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_UploadOrUpdateFrequencyForWords_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadOrUpdateFrequencyForWords" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_UploadOrUpdateFrequencyForWords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadOrUpdateFrequencyForWordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetTopWords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopWords" />
+  </wsdl:message>
+  <wsdl:message name="IVocalRecallService_GetTopWords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopWordsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IVocalRecallService">
+    <wsdl:operation name="DeleteWords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/DeleteWords" message="tns:IVocalRecallService_DeleteWords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/DeleteWordsResponse" message="tns:IVocalRecallService_DeleteWords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadWords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/UploadWords" message="tns:IVocalRecallService_UploadWords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/UploadWordsResponse" message="tns:IVocalRecallService_UploadWords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCultures">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/ListCultures" message="tns:IVocalRecallService_ListCultures_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/ListCulturesResponse" message="tns:IVocalRecallService_ListCultures_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/AuthenticateUser" message="tns:IVocalRecallService_AuthenticateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/AuthenticateUserResponse" message="tns:IVocalRecallService_AuthenticateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/GetUserInfo" message="tns:IVocalRecallService_GetUserInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/GetUserInfoResponse" message="tns:IVocalRecallService_GetUserInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/GetWord" message="tns:IVocalRecallService_GetWord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/GetWordResponse" message="tns:IVocalRecallService_GetWord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/GetTranslations" message="tns:IVocalRecallService_GetTranslations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/GetTranslationsResponse" message="tns:IVocalRecallService_GetTranslations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/GetWords" message="tns:IVocalRecallService_GetWords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/GetWordsResponse" message="tns:IVocalRecallService_GetWords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get10Words">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/Get10Words" message="tns:IVocalRecallService_Get10Words_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/Get10WordsResponse" message="tns:IVocalRecallService_Get10Words_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePicture">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/DeletePicture" message="tns:IVocalRecallService_DeletePicture_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/DeletePictureResponse" message="tns:IVocalRecallService_DeletePicture_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetWordFrequencies">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/ResetWordFrequencies" message="tns:IVocalRecallService_ResetWordFrequencies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/ResetWordFrequenciesResponse" message="tns:IVocalRecallService_ResetWordFrequencies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCultureStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/UpdateCultureStatistics" message="tns:IVocalRecallService_UpdateCultureStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/UpdateCultureStatisticsResponse" message="tns:IVocalRecallService_UpdateCultureStatistics_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOrUpdateFrequencyForWords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/UploadOrUpdateFrequencyForWords" message="tns:IVocalRecallService_UploadOrUpdateFrequencyForWords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/UploadOrUpdateFrequencyForWordsResponse" message="tns:IVocalRecallService_UploadOrUpdateFrequencyForWords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopWords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVocalRecallService/GetTopWords" message="tns:IVocalRecallService_GetTopWords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVocalRecallService/GetTopWordsResponse" message="tns:IVocalRecallService_GetTopWords_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IVocalRecallService" type="tns:IVocalRecallService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteWords">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/DeleteWords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadWords">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/UploadWords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListCultures">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/ListCultures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWord">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/GetWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslations">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/GetTranslations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWords">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/GetWords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get10Words">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/Get10Words" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePicture">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/DeletePicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetWordFrequencies">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/ResetWordFrequencies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCultureStatistics">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/UpdateCultureStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOrUpdateFrequencyForWords">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/UploadOrUpdateFrequencyForWords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopWords">
+      <soap:operation soapAction="http://tempuri.org/IVocalRecallService/GetTopWords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VocalRecallService">
+    <wsdl:port name="BasicHttpBinding_IVocalRecallService" binding="tns:BasicHttpBinding_IVocalRecallService">
+      <soap:address location="http://localhost/VocalRecallService/VocalRecallService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
